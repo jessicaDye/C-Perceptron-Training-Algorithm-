@@ -21,10 +21,29 @@
         double learningRate;
 
         public:
-        Perceptron() {
+        Perceptron(int inputSize, double lr) {
             bias = 0.0;
-            learningRate = 0.1;
+            learningRate = lr;
+
+            srand(time(0));
+            weights.resize(inputSize);
+            for (int i = 0; i < ; i++) {
+                weights[i] = (rand() % 200 - 100) / 100.0; // Random weights between -1 and 1
+
+            }
         }
+
+        int predict(const vector<double> &inputs) {
+            double sum = bias;
+            for (int i = 0; i <weights.size(); i++) {
+                sum += weights[i] * inputs[i];
+            }
+        }
+        return (sum >= 0) ? 1 : 0;
+           
+
+    
+        
     }
 
 int main() {
