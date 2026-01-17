@@ -27,7 +27,7 @@
 
             srand(time(0));
             weights.resize(inputSize);
-            for (int i = 0; i < ; i++) {
+            for (int i = 0; i < inputSize; i++) {
                 weights[i] = (rand() % 200 - 100) / 100.0; // Random weights between -1 and 1
 
             }
