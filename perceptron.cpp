@@ -34,17 +34,37 @@
         }
 
         int predict(const vector<double> &inputs) {
+                //safety check
+            if (inputs.size() != weights.size()) {
+        cerr << "Input size mismatch!" << endl;
+        exit(1); //stop execution
+                        
             double sum = bias;
             for (int i = 0; i <weights.size(); i++) {
                 sum += weights[i] * inputs[i];
             }
         }
         return (sum >= 0) ? 1 : 0;
+
+         void train(const vector<vector<double>> &trainingData, const vector<int> &labels, int epochs) {
+            for (int epoch = 0; epoch < epochs; epoch++) {
+                for (size_t i = 0; i < trainingData.size(); i++) {
+                    int prediction = predict(trainingData[i]);
+                    int error = labels[i] - prediction;
+
+                    // Update weights and bias
+                    for (size_t j = 0; j < weights.size(); j++) {
+                        weights[j] += learningRate * error * trainingData[i][j];
+                    }
+                    bias += learningRate * error;
+                }
+            }
+        }
            
 
     
         
-    }
+    };
 
 int main() {
 
